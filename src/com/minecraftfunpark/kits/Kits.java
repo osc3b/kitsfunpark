@@ -1,7 +1,5 @@
 package com.minecraftfunpark.kits;
 
-import net.gravitydevelopment.updater.Updater;
-import net.gravitydevelopment.updater.Updater.UpdateType;
 
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,8 +39,6 @@ public class Kits extends JavaPlugin {
         registerCommands();
         registerConfigurationSerializables();
         registerAutoSave();
-
-        checkForUpdates();
 
         reload();
 
@@ -86,18 +82,6 @@ public class Kits extends JavaPlugin {
         new AutoSave(this).runTaskTimer(this, (interval * 20) / 1000, (interval * 20) / 1000);
 
         getLogger().info("AutoSave set to execute every " + time.toReadableFormat(false));
-    }
-
-    private void checkForUpdates() {
-        if (!config.getBoolean("updater.enabled")) {
-            return;
-        }
-
-        UpdateType type = config.getString("updater.type").equalsIgnoreCase("default") ? UpdateType.DEFAULT : config.getString("updater.type").equalsIgnoreCase("force") ? UpdateType.NO_VERSION_CHECK : UpdateType.NO_DOWNLOAD;
-
-        boolean silent = !config.getBoolean("updater.silent");
-
-        new Updater(this, 51690, this.getFile(), type, silent);
     }
 
     public void reload() {

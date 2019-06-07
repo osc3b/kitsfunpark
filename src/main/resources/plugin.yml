@@ -1,6 +1,7 @@
 name: kits
 main: com.minecraftfunpark.kits
-version: 2.3
+version: 2.4
+api-version: 1.14
 website: http://www.minecraftfunpark.com
 depend: [BountifulAPI]
 description: >
